@@ -24,7 +24,6 @@ func partition(low int, high int, numbers []int) {
   if high - current_low > 1 {
     partition(current_low, high, numbers)
   }
-
 }
 
 func quicksort(numbers []int) []int {
@@ -34,14 +33,6 @@ func quicksort(numbers []int) []int {
 }
 
 func main() {
-  // var n int
-  // fmt.Scan(&n)
-
-  // var inputs = make([]int, n)
-  // for i := 0; i < n; i++ {
-  //   fmt.Scan(&inputs[i])
-  // }
-
   var inputs = []int {2, 5, 3, 4, 10, 1, 7, 9, 8, 6, 15, 13, 14, 11, 12}
 
   var output []int = quicksort(inputs)
