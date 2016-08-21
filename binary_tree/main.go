@@ -27,24 +27,58 @@ func (node *Node) add(new_node Node) {
       node.left = &new_node
       new_node.parent = node
     } else {
-      new_node.left.add(new_node)
+      node.left.add(new_node)
     }
   } else {
     if node.right == nil {
       node.right = &new_node
       new_node.parent = node
     } else {
-      new_node.right.add(new_node)
+      node.right.add(new_node)
     }
   }
 }
 
+func (tree *BinaryTree) height() int {
+  if (*tree).root == nil { return 0 }
+
+  return tree.root.height()
+}
+
+func (node *Node) height() int {
+  if node.left == nil && node.right == nil {
+    return 1
+  }
+
+  var height_left int = 0
+  var height_right int = 0
+
+  if node.left != nil {
+    height_left = node.left.height()
+  }
+
+  if node.right != nil {
+    height_right = node.right.height()
+  }
+
+  return 1 + max(height_left, height_right)
+}
+
+func max(a int, b int) int {
+  if a > b { return a }
+
+  return b
+}
+
 func main() {
-  root := Node{nil, nil, nil, 10}
+  root := Node{nil, nil, nil, 30}
   tree := BinaryTree{&root}
 
-  new_node := Node{nil, nil, nil, 60}
-  tree.add(new_node)
+  new_node_1 := Node{nil, nil, nil, 45}
+  tree.add(new_node_1)
 
-  fmt.Println(tree.root.right.parent.value)
+  new_node_2 := Node{nil, nil, nil, 15}
+  tree.add(new_node_2)
+
+  fmt.Println(tree.height())
 }
