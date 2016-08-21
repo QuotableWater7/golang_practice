@@ -64,6 +64,26 @@ func (node *Node) height() int {
   return 1 + max(height_left, height_right)
 }
 
+func (tree *BinaryTree) find(value int) (node *Node) {
+  if tree.root == nil { return nil }
+
+  return tree.root.find(value)
+}
+
+func (node *Node) find(value int) (output *Node) {
+  if node.value == value {
+    return node
+  }
+
+  if value < node.value && node.left != nil {
+    return node.left.find(value)
+  } else if value > node.value && node.right != nil {
+    return node.right.find(value)
+  } else {
+    return nil
+  }
+}
+
 func max(a int, b int) int {
   if a > b { return a }
 
@@ -80,5 +100,5 @@ func main() {
   new_node_2 := Node{nil, nil, nil, 15}
   tree.add(new_node_2)
 
-  fmt.Println(tree.height())
+  fmt.Println(tree.find(30).value)
 }
