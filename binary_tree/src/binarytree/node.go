@@ -21,6 +21,12 @@ func (node *Node) find(value int) *Node {
   }
 }
 
+func (node *Node) InOrder(handleNode func(node *Node)) {
+  if node.Left != nil { node.Left.InOrder(handleNode) }
+  handleNode(node)
+  if node.Right != nil { node.Right.InOrder(handleNode) }
+}
+
 func (node *Node) height() int {
   if node.Left == nil && node.Right == nil {
     return 1

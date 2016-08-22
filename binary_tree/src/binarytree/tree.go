@@ -12,6 +12,12 @@ func (tree *BinaryTree) Add(node Node) {
   }
 }
 
+func (tree *BinaryTree) InOrder(handleNode func(node *Node)) {
+  if tree.Root == nil { return }
+
+  tree.Root.InOrder(handleNode)
+}
+
 func (tree *BinaryTree) Height() int {
   if tree.Root == nil { return 0 }
 

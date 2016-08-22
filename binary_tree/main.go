@@ -22,4 +22,10 @@ func main() {
   fmt.Println(tree.Find(30).Value)
   fmt.Println(tree.Min().Value)
   fmt.Println(tree.Max().Value)
+  fmt.Println()
+
+  printNode := func (node *binarytree.Node) {
+    fmt.Printf("%d ", node.Value)
+  }
+  tree.InOrder(printNode)
 }
