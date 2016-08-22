@@ -20,10 +20,22 @@ func (tree *BinaryTree) height() int {
   return tree.root.height()
 }
 
-func (tree *BinaryTree) find(value int) (node *Node) {
+func (tree *BinaryTree) find(value int) *Node {
   if tree.root == nil { return nil }
 
   return tree.root.find(value)
+}
+
+func (tree *BinaryTree) min() *Node {
+  if tree.root == nil { return nil }
+
+  return tree.root.min()
+}
+
+func (tree *BinaryTree) max() *Node {
+  if tree.root == nil { return nil }
+
+  return tree.root.max()
 }
 
 type Node struct {
@@ -33,7 +45,7 @@ type Node struct {
   value int
 }
 
-func (node *Node) find(value int) (output *Node) {
+func (node *Node) find(value int) *Node {
   if node.value == value {
     return node
   }
@@ -84,6 +96,18 @@ func (node *Node) add(new_node Node) {
   }
 }
 
+func (node *Node) min() *Node {
+  if node.left == nil { return node }
+
+  return node.left.min()
+}
+
+func (node *Node) max() *Node {
+  if node.right == nil { return node }
+
+  return node.right.max();
+}
+
 func max(a int, b int) int {
   if a > b { return a }
 
@@ -101,4 +125,6 @@ func main() {
   tree.add(new_node_2)
 
   fmt.Println(tree.find(30).value)
+  fmt.Println(tree.min().value)
+  fmt.Println(tree.max().value)
 }
