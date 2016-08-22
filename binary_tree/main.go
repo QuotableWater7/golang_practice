@@ -6,13 +6,6 @@ type BinaryTree struct {
   root *Node
 }
 
-type Node struct {
-  left *Node
-  right *Node
-  parent *Node
-  value int
-}
-
 func (tree *BinaryTree) add(node Node) {
   if tree.root == nil {
     tree.root = &node
@@ -21,28 +14,37 @@ func (tree *BinaryTree) add(node Node) {
   }
 }
 
-func (node *Node) add(new_node Node) {
-  if new_node.value <= node.value {
-    if node.left == nil {
-      node.left = &new_node
-      new_node.parent = node
-    } else {
-      node.left.add(new_node)
-    }
-  } else {
-    if node.right == nil {
-      node.right = &new_node
-      new_node.parent = node
-    } else {
-      node.right.add(new_node)
-    }
-  }
-}
-
 func (tree *BinaryTree) height() int {
   if (*tree).root == nil { return 0 }
 
   return tree.root.height()
+}
+
+func (tree *BinaryTree) find(value int) (node *Node) {
+  if tree.root == nil { return nil }
+
+  return tree.root.find(value)
+}
+
+type Node struct {
+  left *Node
+  right *Node
+  parent *Node
+  value int
+}
+
+func (node *Node) find(value int) (output *Node) {
+  if node.value == value {
+    return node
+  }
+
+  if value < node.value && node.left != nil {
+    return node.left.find(value)
+  } else if value > node.value && node.right != nil {
+    return node.right.find(value)
+  } else {
+    return nil
+  }
 }
 
 func (node *Node) height() int {
@@ -64,23 +66,21 @@ func (node *Node) height() int {
   return 1 + max(height_left, height_right)
 }
 
-func (tree *BinaryTree) find(value int) (node *Node) {
-  if tree.root == nil { return nil }
-
-  return tree.root.find(value)
-}
-
-func (node *Node) find(value int) (output *Node) {
-  if node.value == value {
-    return node
-  }
-
-  if value < node.value && node.left != nil {
-    return node.left.find(value)
-  } else if value > node.value && node.right != nil {
-    return node.right.find(value)
+func (node *Node) add(new_node Node) {
+  if new_node.value <= node.value {
+    if node.left == nil {
+      node.left = &new_node
+      new_node.parent = node
+    } else {
+      node.left.add(new_node)
+    }
   } else {
-    return nil
+    if node.right == nil {
+      node.right = &new_node
+      new_node.parent = node
+    } else {
+      node.right.add(new_node)
+    }
   }
 }
 
