@@ -17,13 +17,8 @@ func partition(low int, high int, numbers []int) {
 
   numbers[current_low], numbers[high] = numbers[high], numbers[current_low]
 
-  if current_low - low > 1 {
-    partition(low, current_low - 1, numbers)
-  }
-
-  if high - current_low > 1 {
-    partition(current_low, high, numbers)
-  }
+  if current_low - low > 1 { partition(low, current_low - 1, numbers) }
+  if high - current_low > 1 { partition(current_low, high, numbers) }
 }
 
 func quicksort(numbers []int) []int {
@@ -35,7 +30,7 @@ func quicksort(numbers []int) []int {
 func main() {
   var inputs = []int {2, 5, 3, 4, 10, 1, 7, 9, 8, 6, 15, 13, 14, 11, 12}
 
-  var output []int = quicksort(inputs)
+  output := quicksort(inputs)
   for i := range output {
     fmt.Printf("%d ", output[i])
   }
