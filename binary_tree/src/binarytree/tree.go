@@ -21,7 +21,7 @@ func (tree *BinaryTree) InOrder(handleNode func(node *Node)) {
 func (tree *BinaryTree) Height() int {
   if tree.Root == nil { return 0 }
 
-  return tree.Root.height()
+  return tree.Root.Height()
 }
 
 func (tree *BinaryTree) Find(value int) *Node {

@@ -27,7 +27,7 @@ func (node *Node) InOrder(handleNode func(node *Node)) {
   if node.Right != nil { node.Right.InOrder(handleNode) }
 }
 
-func (node *Node) height() int {
+func (node *Node) Height() int {
   if node.Left == nil && node.Right == nil {
     return 1
   }
@@ -36,11 +36,11 @@ func (node *Node) height() int {
   var height_Right int = 0
 
   if node.Left != nil {
-    height_Left = node.Left.height()
+    height_Left = node.Left.Height()
   }
 
   if node.Right != nil {
-    height_Right = node.Right.height()
+    height_Right = node.Right.Height()
   }
 
   return 1 + max(height_Left, height_Right)
