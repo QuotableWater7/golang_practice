@@ -20,7 +20,7 @@ func main() {
     "\n" +
     "BODY of the REQUEST!!\n")
 
-  fmt.Printf("\n%d lines in packet.\n", request.NumLines)
+  fmt.Printf("\n%d lines in HTTP %s.\n", request.NumLines, request.Type)
   fmt.Printf("*******************\n\n")
   fmt.Println("REQUEST LINE")
   fmt.Println(request.RequestLine)

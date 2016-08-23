@@ -5,6 +5,7 @@ import (
 )
 
 type Request struct {
+  Type string
   NumLines int
   Length int
   RequestLine string
@@ -15,6 +16,7 @@ type Request struct {
 func Parse(packet string) (*Request) {
   request := Request{}
   request.Length = len(packet)
+  request.Type = extractType(packet)
 
   lines := strings.Split(packet, "\n")
 
