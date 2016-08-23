@@ -17,7 +17,8 @@ func main() {
     "Cookie: PHPSESSID=r2t5uvjq435r4q7ib3vtdjq120\n" +
     "Pragma: no-cache\n" +
     "Cache-Control: no-cache\n" +
-    "NOPE\n")
+    "\n" +
+    "BODY of the REQUEST!!\n")
 
   fmt.Printf("\n%d lines in packet.\n", request.NumLines)
   fmt.Printf("*******************\n\n")
@@ -26,8 +27,14 @@ func main() {
 
   fmt.Println()
   fmt.Println("******************\n")
+  fmt.Println("HEADERS")
 
   for i := range request.Headers {
     fmt.Printf("%s: %s\n", request.Headers[i].Key, request.Headers[i].Value)
   }
+
+  fmt.Println()
+  fmt.Println("******************\n")
+  fmt.Println("BODY")
+  fmt.Println(request.Body)
 }
