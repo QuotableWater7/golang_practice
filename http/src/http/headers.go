@@ -1,8 +1,16 @@
 package http
 
-import "regexp"
+import (
+  "regexp"
+  "strings"
+)
 
-func extractHeaders(lines []string) []string {
+type Header struct {
+  key string
+  value string
+}
+
+func extractHeaders(lines []string) [](*Header) {
   lines_after_request := lines[1:]
   var header_stopping_point int
 
@@ -13,7 +21,19 @@ func extractHeaders(lines []string) []string {
     }
   }
 
-  return lines_after_request[:header_stopping_point]
+  headers := lines_after_request[:header_stopping_point]
+  return buildHeaderStructs(headers)
+}
+
+func buildHeaderStructs(headers []string) [](*Header) {
+  headerStructs := make([](*Header), len(headers))
+
+  for i := range headers {
+    keyValPair := strings.Split(headers[i], ": ")
+    headerStructs[i] = &Header{key: keyValPair[0], value: keyValPair[1]}
+  }
+
+  return headerStructs
 }
 
 func isHeader(line string) bool {

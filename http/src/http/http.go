@@ -17,6 +17,8 @@ func Parse(packet string) {
   fmt.Println()
   fmt.Println("******************\n")
 
-  output := extractHeaders(lines)
-  fmt.Println(strings.Join(output, "\n"))
+  headers := extractHeaders(lines)
+  for i := range headers {
+    fmt.Printf("%s: %s\n", headers[i].key, headers[i].value)
+  }
 }
