@@ -16,7 +16,7 @@ func Parse(packet string) (*Request) {
     Length: len(packet),
     Type: extractType(packet),
     NumLines: len(lines),
-    RequestLine: lines[0],
+    RequestLine: extractRequestLine(lines),
     Headers: extractHeaders(lines),
     Body: extractBody(packet),
   }
