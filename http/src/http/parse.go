@@ -1,9 +1,5 @@
 package http
 
-import (
-  "strings"
-)
-
 type Request struct {
   Type string
   NumLines int
@@ -18,7 +14,7 @@ func Parse(packet string) (*Request) {
   request.Length = len(packet)
   request.Type = extractType(packet)
 
-  lines := strings.Split(packet, "\n")
+  lines := extractLines(packet)
 
   request.NumLines = len(lines)
   request.RequestLine = lines[0]
