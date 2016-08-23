@@ -10,7 +10,13 @@ func Parse(packet string) {
   request_line := lines[0]
 
   fmt.Printf("\n%d lines in packet.\n", len(lines))
-  fmt.Printf("*******************\n")
+  fmt.Printf("*******************\n\n")
+  fmt.Println("REQUEST LINE")
   fmt.Println(request_line)
-  fmt.Println(strings.Join(lines[1:], "\n"))
+
+  fmt.Println()
+  fmt.Println("******************\n")
+
+  output := extractHeaders(lines)
+  fmt.Println(strings.Join(output, "\n"))
 }

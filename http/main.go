@@ -15,5 +15,6 @@ func main() {
     "Connection: keep-alive\n" +
     "Cookie: PHPSESSID=r2t5uvjq435r4q7ib3vtdjq120\n" +
     "Pragma: no-cache\n" +
-    "Cache-Control: no-cache\n")
+    "Cache-Control: no-cache\n" +
+    "NOPE\n")
 }
