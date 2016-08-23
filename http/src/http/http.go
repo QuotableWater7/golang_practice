@@ -1,31 +1,26 @@
 package http
 
 import (
-  "fmt"
   "strings"
 )
 
 type Request struct {
+  NumLines int
+  Length int
   RequestLine string
   Headers [](*Header)
+  Body string
 }
 
-func Parse(packet string) {
+func Parse(packet string) (*Request) {
   request := Request{}
+  request.Length = len(packet)
 
   lines := strings.Split(packet, "\n")
+  request.NumLines = len(lines)
   request.RequestLine = lines[0]
 
-  fmt.Printf("\n%d lines in packet.\n", len(lines))
-  fmt.Printf("*******************\n\n")
-  fmt.Println("REQUEST LINE")
-  fmt.Println(request.RequestLine)
-
-  fmt.Println()
-  fmt.Println("******************\n")
-
   request.Headers = extractHeaders(lines)
-  for i := range request.Headers {
-    fmt.Printf("%s: %s\n", request.Headers[i].key, request.Headers[i].value)
-  }
+
+  return &request
 }

@@ -1,9 +1,10 @@
 package main
 
+import "fmt"
 import "http"
 
 func main() {
-  http.Parse(
+  request := http.Parse(
     "GET /tutorials/other/top-20-mysql-best-practices/ HTTP/1.1\n" +
     "Host: net.tutsplus.com\n" +
     "User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5 (.NET CLR 3.5.30729)\n" +
@@ -17,4 +18,16 @@ func main() {
     "Pragma: no-cache\n" +
     "Cache-Control: no-cache\n" +
     "NOPE\n")
+
+  fmt.Printf("\n%d lines in packet.\n", request.NumLines)
+  fmt.Printf("*******************\n\n")
+  fmt.Println("REQUEST LINE")
+  fmt.Println(request.RequestLine)
+
+  fmt.Println()
+  fmt.Println("******************\n")
+
+  for i := range request.Headers {
+    fmt.Printf("%s: %s\n", request.Headers[i].Key, request.Headers[i].Value)
+  }
 }

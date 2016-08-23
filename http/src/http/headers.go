@@ -6,8 +6,8 @@ import (
 )
 
 type Header struct {
-  key string
-  value string
+  Key string
+  Value string
 }
 
 func extractHeaders(lines []string) [](*Header) {
@@ -30,7 +30,7 @@ func buildHeaderStructs(headers []string) [](*Header) {
 
   for i := range headers {
     keyValPair := strings.Split(headers[i], ": ")
-    headerStructs[i] = &Header{key: keyValPair[0], value: keyValPair[1]}
+    headerStructs[i] = &Header{Key: keyValPair[0], Value: keyValPair[1]}
   }
 
   return headerStructs
