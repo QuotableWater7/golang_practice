@@ -6,7 +6,11 @@ import (
 )
 
 func Parse(packet string) {
-  fmt.Println(strings.Split(packet, "k"))
-  _ = "breakpoint"
-  fmt.Println(packet)
+  lines := strings.Split(packet, "\n")
+  request_line := lines[0]
+
+  fmt.Printf("\n%d lines in packet.\n", len(lines))
+  fmt.Printf("*******************\n")
+  fmt.Println(request_line)
+  fmt.Println(strings.Join(lines[1:], "\n"))
 }
