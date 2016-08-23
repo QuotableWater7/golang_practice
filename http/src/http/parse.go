@@ -10,17 +10,14 @@ type Request struct {
 }
 
 func Parse(packet string) (*Request) {
-  request := Request{}
-  request.Length = len(packet)
-  request.Type = extractType(packet)
-
   lines := extractLines(packet)
 
-  request.NumLines = len(lines)
-  request.RequestLine = lines[0]
-
-  request.Headers = extractHeaders(lines)
-  request.Body = extractBody(packet)
-
-  return &request
+  return &Request{
+    Length: len(packet),
+    Type: extractType(packet),
+    NumLines: len(lines),
+    RequestLine: lines[0],
+    Headers: extractHeaders(lines),
+    Body: extractBody(packet),
+  }
 }
