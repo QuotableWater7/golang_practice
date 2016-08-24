@@ -5,7 +5,7 @@ type Request struct {
   NumLines int
   Length int
   RequestLine string
-  Headers [](*Header)
+  Headers map[string]string
   Body string
 }
 

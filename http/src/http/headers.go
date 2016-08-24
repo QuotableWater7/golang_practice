@@ -5,12 +5,7 @@ import (
   "strings"
 )
 
-type Header struct {
-  Key string
-  Value string
-}
-
-func extractHeaders(lines []string) [](*Header) {
+func extractHeaders(lines []string) map[string]string {
   lines_after_request := lines[1:]
   var header_stopping_point int
 
@@ -22,18 +17,18 @@ func extractHeaders(lines []string) [](*Header) {
   }
 
   headers := lines_after_request[:header_stopping_point]
-  return buildHeaderStructs(headers)
+  return buildHeaderMap(headers)
 }
 
-func buildHeaderStructs(headers []string) [](*Header) {
-  headerStructs := make([](*Header), len(headers))
+func buildHeaderMap(headers []string) map[string]string {
+  output := make(map[string]string)
 
   for i := range headers {
     keyValPair := strings.Split(headers[i], ": ")
-    headerStructs[i] = &Header{Key: keyValPair[0], Value: keyValPair[1]}
+    output[keyValPair[0]] = keyValPair[1]
   }
 
-  return headerStructs
+  return output
 }
 
 func isHeader(line string) bool {

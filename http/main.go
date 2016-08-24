@@ -29,8 +29,8 @@ func main() {
   fmt.Println("******************\n")
   fmt.Println("HEADERS")
 
-  for i := range request.Headers {
-    fmt.Printf("%s: %s\n", request.Headers[i].Key, request.Headers[i].Value)
+  for key, value := range request.Headers {
+    fmt.Printf("%s: %s\n", key, value)
   }
 
   fmt.Println()
