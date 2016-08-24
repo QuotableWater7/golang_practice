@@ -4,11 +4,11 @@ type BinaryTree struct {
   Root *Node
 }
 
-func (tree *BinaryTree) Add(node Node) {
+func (tree *BinaryTree) Insert(node Node) {
   if tree.Root == nil {
     tree.Root = &node
   } else {
-    tree.Root.add(node)
+    tree.Root.insert(node)
   }
 }
 

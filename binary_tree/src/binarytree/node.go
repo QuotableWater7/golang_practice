@@ -46,20 +46,20 @@ func (node *Node) Height() int {
   return 1 + max(height_Left, height_Right)
 }
 
-func (node *Node) add(new_node Node) {
+func (node *Node) insert(new_node Node) {
   if new_node.Value <= node.Value {
     if node.Left == nil {
       node.Left = &new_node
       new_node.Parent = node
     } else {
-      node.Left.add(new_node)
+      node.Left.insert(new_node)
     }
   } else {
     if node.Right == nil {
       node.Right = &new_node
       new_node.Parent = node
     } else {
-      node.Right.add(new_node)
+      node.Right.insert(new_node)
     }
   }
 }
